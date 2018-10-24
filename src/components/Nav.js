@@ -7,7 +7,7 @@ class Nav extends Component {
       <header>
         <nav className="App-nav">
           <ul className="nav nav-pills justify-content-center">
-            <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to="/login">Login</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" activeClassName="active" exact to="/">Login</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to="/products">Products</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to="/checkout">Checkout</NavLink></li>
           </ul>
