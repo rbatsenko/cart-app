@@ -13,7 +13,7 @@ const AppRouter = () => (
   <Router history={history}>
     <div>
       <Nav />
-      <main>
+      <main className="App-main">
         <Switch>
           <Route path="/" component={LoginPage} exact={true} />
           <Route path="/login" component={LoginPage} />
