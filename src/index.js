@@ -11,7 +11,7 @@ const store = createStore(
   (state = { 
     products: products,
     productsInCart: productsInCart,
-    cartTotal: Object.values(productsInCart.map(product => product.price)).reduce((a, b) => {
+    cartTotal: Object.values(productsInCart.map(product => product.price * product.quantity)).reduce((a, b) => {
       return a + b;
     })
   }) => {

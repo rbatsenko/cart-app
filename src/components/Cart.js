@@ -9,7 +9,11 @@ class Cart extends Component {
       <div className="App-cart">
         <h4 className="d-flex justify-content-between align-items-center mb-3">
           <span className="text-muted">Your cart</span>
-          <span className="badge badge-secondary badge-pill">3</span>
+          <span className="badge badge-secondary badge-pill">
+          {
+            this.props.productsInCart.map(product => product.quantity).reduce((a, b) => a + b)
+          }
+          </span>
         </h4>
         <ul className="list-group mb-3">
           {

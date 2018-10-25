@@ -8,7 +8,7 @@ class Nav extends Component {
       <header>
         <nav className="App-nav text-center">
           <ul className="nav justify-content-center">
-            <li className="nav-item nav-item--logo"><NavLink className="nav-link" activeClassName="active" to="/products"><img src={basket} alt="" width="40" height="40" /></NavLink></li>
+            <li className="nav-item nav-item--logo"><NavLink className="nav-link" to="/products"><img src={basket} alt="" width="40" height="40" /></NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" exact to="/login">Login</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to="/products">Products</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" activeClassName="active" to="/checkout">Checkout</NavLink></li>

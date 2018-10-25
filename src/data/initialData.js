@@ -45,11 +45,13 @@ export const productsInCart = [
   {
     id: 1,
     name: 'Apple',
-    price: 10
+    price: 6,
+    quantity: 2
   },
   {
     id: 2,
     name: 'Banana',
-    price: 15
+    price: 4,
+    quantity: 1
   }
 ];
