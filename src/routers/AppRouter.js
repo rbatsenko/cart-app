@@ -15,7 +15,7 @@ const AppRouter = () => (
       <Nav />
       <main className="App-main">
         <Switch>
-          <Route path="/" component={LoginPage} exact={true} />
+          <Route path="/" component={ProductsPage} exact={true} />
           <Route path="/login" component={LoginPage} />
           <Route path="/products" component={ProductsPage} />
           <Route path="/checkout" component={CheckoutPage} />
