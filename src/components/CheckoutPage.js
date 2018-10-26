@@ -53,7 +53,7 @@ class CheckoutPage extends Component {
 
               <div className="mb-3">
                 <label htmlFor="address">Address</label>
-                <input type="text" className="form-control" id="address" placeholder="1234 Main St" required="" />
+                <input type="text" className="form-control" id="address" placeholder="1234 Main St" required />
                 <div className="invalid-feedback">
                   Please enter your shipping address.
                 </div>
@@ -67,7 +67,7 @@ class CheckoutPage extends Component {
               <div className="row">
                 <div className="col-md-5 mb-3">
                   <label htmlFor="country">Country</label>
-                  <select className="custom-select d-block w-100" id="country" required="">
+                  <select className="custom-select d-block w-100" id="country" required>
                     <option value="">Choose...</option>
                     <option>United States</option>
                   </select>
@@ -77,7 +77,7 @@ class CheckoutPage extends Component {
                 </div>
                 <div className="col-md-4 mb-3">
                   <label htmlFor="state">State</label>
-                  <select className="custom-select d-block w-100" id="state" required="">
+                  <select className="custom-select d-block w-100" id="state" required>
                     <option value="">Choose...</option>
                     <option>California</option>
                   </select>
@@ -87,7 +87,7 @@ class CheckoutPage extends Component {
                 </div>
                 <div className="col-md-3 mb-3">
                   <label htmlFor="zip">Zip</label>
-                  <input type="text" className="form-control" id="zip" placeholder="" required="" />
+                  <input type="text" className="form-control" id="zip" placeholder="" required />
                   <div className="invalid-feedback">
                     Zip code required.
                   </div>
@@ -112,18 +112,18 @@ class CheckoutPage extends Component {
                   <label className="custom-control-label" htmlFor="credit">Credit card</label>
                 </div>
                 <div className="custom-control custom-radio">
-                  <input id="debit" name="paymentMethod" type="radio" className="custom-control-input" required="" />
+                  <input id="debit" name="paymentMethod" type="radio" className="custom-control-input" required />
                   <label className="custom-control-label" htmlFor="debit">Debit card</label>
                 </div>
                 <div className="custom-control custom-radio">
-                  <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input" required="" />
+                  <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input" required />
                   <label className="custom-control-label" htmlFor="paypal">PayPal</label>
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label htmlFor="cc-name">Name on card</label>
-                  <input type="text" className="form-control" id="cc-name" placeholder="" required="" />
+                  <input type="text" className="form-control" id="cc-name" placeholder="" required />
                   <small className="text-muted">Full name as displayed on card</small>
                   <div className="invalid-feedback">
                     Name on card is required
@@ -131,7 +131,7 @@ class CheckoutPage extends Component {
                 </div>
                 <div className="col-md-6 mb-3">
                   <label htmlFor="cc-number">Credit card number</label>
-                  <input type="text" className="form-control" id="cc-number" placeholder="" required="" />
+                  <input type="text" className="form-control" id="cc-number" placeholder="" required />
                   <div className="invalid-feedback">
                     Credit card number is required
                   </div>
@@ -140,14 +140,14 @@ class CheckoutPage extends Component {
               <div className="row">
                 <div className="col-md-3 mb-3">
                   <label htmlFor="cc-expiration">Expiration</label>
-                  <input type="text" className="form-control" id="cc-expiration" placeholder="" required="" />
+                  <input type="text" className="form-control" id="cc-expiration" placeholder="" required />
                   <div className="invalid-feedback">
                     Expiration date required
                   </div>
                 </div>
                 <div className="col-md-3 mb-3">
                   <label htmlFor="cc-cvv">CVV</label>
-                  <input type="text" className="form-control" id="cc-cvv" placeholder="" required="" />
+                  <input type="text" className="form-control" id="cc-cvv" placeholder="" required />
                   <div className="invalid-feedback">
                     Security code required
                   </div>
