@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CartProductItem from './CartProductItem';
 
@@ -11,13 +12,13 @@ class Cart extends Component {
           <span className="text-muted">Your cart</span>
           <span className="badge badge-secondary badge-pill">
           {
-            this.props.productsInCart.map(product => product.quantity).reduce((a, b) => a + b)
+            this.props.cart.map(product => product.count).reduce((a, b) => a + b)
           }
           </span>
         </h4>
         <ul className="list-group mb-3">
           {
-            this.props.productsInCart.map((product) => {
+            this.props.cart.map((product) => {
               return <CartProductItem key={product.id} {...product} />;
             })
           }
@@ -31,10 +32,14 @@ class Cart extends Component {
   }
 }
 
+Cart.propTypes = {
+  cartTotal: PropTypes.number
+};
+
 const mapStateToProps = (state, ownProps) => {
   return {
     products: state.products,
-    productsInCart: state.productsInCart,
+    cart: state.cart,
     cartTotal: state.cartTotal
   }
 };

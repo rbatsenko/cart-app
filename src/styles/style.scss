@@ -1,4 +1,6 @@
+@import './base/base';
 @import './base/settings';
-@import './components/App.scss';
+@import './components/nav';
 @import './components/login';
 @import './components/products';
+@import './components/checkout';

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ProductItem = ({ name, price }) => (
   <div className="col-md-4 product-item">
@@ -13,5 +14,10 @@ const ProductItem = ({ name, price }) => (
     </div>
   </div>
 );
+
+ProductItem.propTypes = {
+  name: PropTypes.string,
+  price: PropTypes.number
+}
 
 export default ProductItem;
