@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CartProductItem from './CartProductItem';
+import { removeFromCart } from '../actions/actions';
 
 class Cart extends Component {
+
+  handleRemove = id => {
+    this.props.onRemove(id);
+    this.props.calcTotal();
+  }
 
   render() {
     return (
@@ -19,7 +25,7 @@ class Cart extends Component {
         <ul className="list-group mb-3">
           {
             this.props.cart.map((product) => {
-              return <CartProductItem key={product.id} {...product} />;
+              return <CartProductItem key={product.id} id={product.id} {...product} onClick={this.handleRemove} />;
             })
           }
           <li className="list-group-item d-flex justify-content-between">
@@ -36,7 +42,7 @@ Cart.propTypes = {
   cartTotal: PropTypes.number
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     products: state.products,
     cart: state.cart,
@@ -44,4 +50,11 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch => {
+  return {
+    onRemove: id => dispatch(removeFromCart({ id: id })),
+    calcTotal: () => dispatch({ type: 'CALC_TOTAL' })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
