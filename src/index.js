@@ -38,7 +38,7 @@ const store = createStore(
         return {
           products: state.products,
           cart: state.cart,
-          cartTotal: Object.values(state.cart.map(product => product.price * product.count)).reduce((a, b) => { return a + b; })
+          cartTotal: Object.values(state.cart.map(product => product.price * product.count)).reduce((a, b) => { return a + b; }, 0)
         }
       default:
         console.log(state);

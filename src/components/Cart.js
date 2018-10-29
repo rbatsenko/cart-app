@@ -18,7 +18,7 @@ class Cart extends Component {
           <span className="text-muted">Your cart</span>
           <span className="badge badge-secondary badge-pill">
           {
-            this.props.cart.map(product => product.count).reduce((a, b) => a + b)
+            this.props.cart.map(product => product.count).reduce((a, b) => a + b, 0)
           }
           </span>
         </h4>
