@@ -7,27 +7,32 @@ export const cartReducer = (state = {
 }, action) => {
   switch(action.type) {
     case 'ADD_TO_CART':
-      const isInCart = state.cart.find(({ id }) => id === action.product.id);
-      if (isInCart) {
-        return {
-          products: state.products,
-          cart: state.cart.map(product => {
-            if (product.id === action.product.id) {
-              product = { ...product, count: product.count + 1 };
-            }
-            return product;
-          }),
-          cartTotal: state.cartTotal
+      if (Object.values(state.cart.map(product => product.count)).reduce((a, b) => { return a + b; }, 0) < 3) {
+        const isInCart = state.cart.find(({ id }) => id === action.product.id);
+        if (isInCart) {
+          return {
+            products: state.products,
+            cart: state.cart.map(product => {
+              if (product.id === action.product.id) {
+                product = { ...product, count: product.count + 1 };
+              }
+              return product;
+            }),
+            cartTotal: state.cartTotal
+          }
+        } else {
+          return {
+            products: state.products,
+            cart: [
+              ...state.cart,
+              action.product
+            ],
+            cartTotal: state.cartTotal
+          }
         }
       } else {
-        return {
-          products: state.products,
-          cart: [
-            ...state.cart,
-            action.product
-          ],
-          cartTotal: state.cartTotal
-        }
+        alert('You can only add 3 or less items to cart!')
+        return state;
       }
     case 'REMOVE_FROM_CART':
       return {
