@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import Cart from './Cart';
 
 class CheckoutPage extends Component {
+
+  handleKeyUp = (e) => {
+    e.target.value ? e.target.classList.remove('is-invalid') : e.target.classList.add('is-invalid');
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <div className="container">
@@ -16,14 +25,14 @@ class CheckoutPage extends Component {
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label htmlFor="firstName">First name</label>
-                  <input type="text" className="form-control" id="firstName" required />
+                  <input type="text" className="form-control" id="firstName" required onKeyUp={this.handleKeyUp} />
                   <div className="invalid-feedback">
                     Valid first name is required.
                   </div>
                 </div>
                 <div className="col-md-6 mb-3">
                   <label htmlFor="lastName">Last name</label>
-                  <input type="text" className="form-control" id="lastName" required />
+                  <input type="text" className="form-control" id="lastName" required onKeyUp={this.handleKeyUp} />
                   <div className="invalid-feedback">
                     Valid last name is required.
                   </div>
@@ -32,7 +41,7 @@ class CheckoutPage extends Component {
 
               <div className="mb-3">
                 <label htmlFor="address">Phone number</label>
-                <input type="text" className="form-control" id="phone" placeholder="XXXXXXXXX" required />
+                <input type="text" className="form-control" id="phone" placeholder="XXXXXXXXX" required onKeyUp={this.handleKeyUp} />
                 <div className="invalid-feedback">
                   Please enter your phone number.
                 </div>
@@ -40,7 +49,7 @@ class CheckoutPage extends Component {
 
               <div className="mb-3">
                 <label htmlFor="address">Address</label>
-                <input type="text" className="form-control" id="address" placeholder="ul. Winogrady 3/5" required />
+                <input type="text" className="form-control" id="address" placeholder="ul. Winogrady 3/5" required onKeyUp={this.handleKeyUp} />
                 <div className="invalid-feedback">
                   Please enter your shipping address.
                 </div>
@@ -89,7 +98,7 @@ class CheckoutPage extends Component {
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label htmlFor="cc-name">Name on card</label>
-                  <input type="text" className="form-control" id="cc-name" required />
+                  <input type="text" className="form-control" id="cc-name" required onKeyUp={this.handleKeyUp} />
                   <small className="text-muted">Full name as displayed on card</small>
                   <div className="invalid-feedback">
                     Name on card is required
@@ -97,7 +106,7 @@ class CheckoutPage extends Component {
                 </div>
                 <div className="col-md-6 mb-3">
                   <label htmlFor="cc-number">Credit card number</label>
-                  <input type="text" className="form-control" id="cc-number" required />
+                  <input type="text" className="form-control" id="cc-number" required onKeyUp={this.handleKeyUp} />
                   <div className="invalid-feedback">
                     Credit card number is required
                   </div>
@@ -106,21 +115,21 @@ class CheckoutPage extends Component {
               <div className="row">
                 <div className="col-md-3 mb-3">
                   <label htmlFor="cc-expiration">Expiration</label>
-                  <input type="text" className="form-control" id="cc-expiration" required />
+                  <input type="text" className="form-control" id="cc-expiration" required onKeyUp={this.handleKeyUp} />
                   <div className="invalid-feedback">
                     Expiration date required
                   </div>
                 </div>
                 <div className="col-md-3 mb-3">
                   <label htmlFor="cc-cvv">CVV</label>
-                  <input type="text" className="form-control" id="cc-cvv" required />
+                  <input type="text" className="form-control" id="cc-cvv" required onKeyUp={this.handleKeyUp} />
                   <div className="invalid-feedback">
                     Security code required
                   </div>
                 </div>
               </div>
               <hr className="mb-4" />
-              <button className="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+              <button className="btn btn-primary btn-lg btn-block" type="submit" onClick={this.handleSubmit}>Continue to checkout</button>
             </form>
           </div>
         </div>
