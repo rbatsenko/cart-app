@@ -37,7 +37,7 @@ const cartReducer = (state, action) => {
 }
 
 const cartTotalReducer = (state, action) => {
-  const cart = action.cart;
+  const cart = action.cart; // access to Cart
   switch(action.type) {
     case 'CALC_TOTAL':
       return Object.values(cart.map(product => product.price * product.count)).reduce((a, b) => { return a + b; }, 0);
@@ -55,7 +55,7 @@ export const mainReducer = combineReducers({
 */
 
 export const rootReducer = (state = { products: initialState.products, cart: initialState.cart, cartTotal: 0 }, action) => {
-  const cart = state.cart; //for cartTotalReducer access
+  const cart = state.cart; // for cartTotalReducer access
   return {
     products: productsReducer(state.products, action),
     cart: cartReducer(state.cart, action),
