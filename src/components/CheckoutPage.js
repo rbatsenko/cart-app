@@ -31,6 +31,14 @@ class CheckoutPage extends Component {
               </div>
 
               <div className="mb-3">
+                <label htmlFor="address">Phone number</label>
+                <input type="text" className="form-control" id="phone" placeholder="XXXXXXXXX" required />
+                <div className="invalid-feedback">
+                  Please enter your phone number.
+                </div>
+              </div>
+
+              <div className="mb-3">
                 <label htmlFor="address">Address</label>
                 <input type="text" className="form-control" id="address" placeholder="ul. Winogrady 3/5" required />
                 <div className="invalid-feedback">
