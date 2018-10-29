@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { addToCart } from '../actions/actions';
 import ProductItem from './ProductItem';
 import Cart from './Cart';
 
 class ProductsPage extends Component {
+
+  handleAdd = (id, name, price) => {
+    this.props.onAdd(id, name, price);
+    this.props.calcTotal();
+  }
+
   render() {
     return (
       <div className="container">
@@ -18,7 +25,7 @@ class ProductsPage extends Component {
             <div className="row products-container">
               {
                 this.props.products.map((product) => {
-                  return <ProductItem key={product.id} {...product} />;
+                  return <ProductItem key={product.id} id={product.id} {...product} onClick={this.handleAdd} />;
                 })
               }
             </div>
@@ -34,10 +41,19 @@ class ProductsPage extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    products: state.products
+    products: state.products,
+    cart: state.cart,
+    cartTotal: state.cartTotal
   }
 };
 
-export default connect(mapStateToProps)(ProductsPage);
+const mapDispatchToProps = dispatch => {
+  return {
+    onAdd: (id, name, price) => dispatch(addToCart({ id: id, name: name, price: price })),
+    calcTotal: () => dispatch({ type: 'CALC_TOTAL' })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);

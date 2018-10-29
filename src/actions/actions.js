@@ -1,9 +1,20 @@
 // addToCart
-export const addToCart = (id, count) => (
+export const addToCart = (
+  {
+    id,
+    name,
+    price,
+    count = 1
+  } = {}
+) => (
   {
     type: 'ADD_TO_CART',
-    id,
-    count,
+    product: {
+      id,
+      name,
+      price,
+      count
+    }
   }
 );
 
