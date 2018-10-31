@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 
 class ConfirmationPage extends Component {
   render() {
+    let date = new Date();
+    let receiveDate = new Date(date);
+    receiveDate.setDate(receiveDate.getDate() + 3);
+
+    let dd = receiveDate.getDate();
+    let mm = receiveDate.getMonth() + 1;
+    let yyyy = receiveDate.getFullYear();
+
     return (
       <div className="container">
         <div className="row">
@@ -32,7 +40,7 @@ class ConfirmationPage extends Component {
               </ul>
             </div>
             <hr />
-            <p className="mb-2">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+            <p className="mb-2">You will receive your goodies on <strong>{dd}.{mm}.{yyyy}</strong></p>
           </div>
           </div>
         </div>
