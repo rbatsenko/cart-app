@@ -1,13 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 import { rootReducer } from './reducers/reducers';
+import { configureFakeBackend } from './helpers/fake-backend';
 import { Provider } from 'react-redux';
 import './styles/style.scss';
 import AppRouter from './routers/AppRouter';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(rootReducer);
+const loggerMiddleware = createLogger();
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(
+    thunkMiddleware,
+    loggerMiddleware
+  )
+);
+
+// setup fake backend
+configureFakeBackend();
 
 ReactDOM.render(
   <Provider store={store}>

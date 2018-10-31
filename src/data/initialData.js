@@ -1,19 +1,5 @@
 // INITIAL STATE
-export const initialState = {
-  users: [
-    {
-      username: 'admin',
-      password: 'admin'
-    },
-    {
-      username: 'rbatsenko',
-      password: 'rbatsenko',
-      name: 'Roman',
-      surname: 'Batsenko',
-      address: 'ul. Dworcowa 55/2',
-      phone: 456789123
-    }
-  ],
+export const initialCartState = {
   cart: [],
   products: [
     {

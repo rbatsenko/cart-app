@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Cart from './Cart';
 
 class CheckoutPage extends Component {
@@ -9,9 +10,13 @@ class CheckoutPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    this.props.history.push('/confirmation');
   }
 
   render() {
+    const { authentication } = this.props;
+
     return (
       <div className="container">
         <div className="row">
@@ -25,14 +30,14 @@ class CheckoutPage extends Component {
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label htmlFor="firstName">First name</label>
-                  <input type="text" className="form-control" id="firstName" required onKeyUp={this.handleKeyUp} />
+                  <input type="text" className="form-control" id="firstName" defaultValue={authentication.loggedIn ? authentication.user.firstName : ''} required onKeyUp={this.handleKeyUp} />
                   <div className="invalid-feedback">
                     Valid first name is required.
                   </div>
                 </div>
                 <div className="col-md-6 mb-3">
                   <label htmlFor="lastName">Last name</label>
-                  <input type="text" className="form-control" id="lastName" required onKeyUp={this.handleKeyUp} />
+                  <input type="text" className="form-control" id="lastName" defaultValue={authentication.loggedIn ? authentication.user.lastName : ''} required onKeyUp={this.handleKeyUp} />
                   <div className="invalid-feedback">
                     Valid last name is required.
                   </div>
@@ -41,7 +46,7 @@ class CheckoutPage extends Component {
 
               <div className="mb-3">
                 <label htmlFor="address">Phone number</label>
-                <input type="text" className="form-control" id="phone" placeholder="XXXXXXXXX" required onKeyUp={this.handleKeyUp} />
+                <input type="text" className="form-control" id="phone" placeholder="XXXXXXXXX" defaultValue={authentication.loggedIn ? authentication.user.phone : ''} required onKeyUp={this.handleKeyUp} />
                 <div className="invalid-feedback">
                   Please enter your phone number.
                 </div>
@@ -49,7 +54,7 @@ class CheckoutPage extends Component {
 
               <div className="mb-3">
                 <label htmlFor="address">Address</label>
-                <input type="text" className="form-control" id="address" placeholder="ul. Winogrady 3/5" required onKeyUp={this.handleKeyUp} />
+                <input type="text" className="form-control" id="address" placeholder="ul. Winogrady 3/5" defaultValue={authentication.loggedIn ? authentication.user.address : ''} required onKeyUp={this.handleKeyUp} />
                 <div className="invalid-feedback">
                   Please enter your shipping address.
                 </div>
@@ -98,7 +103,7 @@ class CheckoutPage extends Component {
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label htmlFor="cc-name">Name on card</label>
-                  <input type="text" className="form-control" id="cc-name" required onKeyUp={this.handleKeyUp} />
+                  <input type="text" className="form-control" id="cc-name" defaultValue={authentication.loggedIn ? authentication.user.firstName + ' ' + authentication.user.lastName : ''} required onKeyUp={this.handleKeyUp} />
                   <small className="text-muted">Full name as displayed on card</small>
                   <div className="invalid-feedback">
                     Name on card is required
@@ -138,4 +143,11 @@ class CheckoutPage extends Component {
   }
 }
 
-export default CheckoutPage;
+const mapStateToProps = (state) => {
+  const { authentication } = state;
+  return ({
+    authentication
+  });
+}
+
+export default connect(mapStateToProps)(CheckoutPage);

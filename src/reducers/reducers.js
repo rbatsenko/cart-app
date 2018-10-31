@@ -1,4 +1,5 @@
-import { initialState } from '../data/initialData';
+import { initialCartState } from '../data/initialData';
+import { alertConstants, userConstants } from '../constants/constants';
 
 const productsReducer = (state, action) => {
   switch(action.type) {
@@ -54,11 +55,78 @@ export const mainReducer = combineReducers({
 });
 */
 
-export const rootReducer = (state = { products: initialState.products, cart: initialState.cart, cartTotal: 0 }, action) => {
+// ----------------------------------------- AUTH ----------------------------------------------------------------------//
+
+export const alert = (state = {}, action) => {
+  switch (action.type) {
+    case alertConstants.SUCCESS:
+      return {
+        type: 'alert-success',
+        message: action.message
+      };
+    case alertConstants.ERROR:
+      return {
+        type: 'alert-danger',
+        message: action.message
+      };
+    case alertConstants.CLEAR:
+      return {};
+    default:
+      return state
+  }
+}
+
+let user = JSON.parse(localStorage.getItem('user'));
+const initialState = user ? { loggedIn: true, user } : {};
+
+export const authentication = (state = initialState, action) => {
+  switch (action.type) {
+    case userConstants.LOGIN_REQUEST:
+      return {
+        loggingIn: true,
+        user: action.user
+      };
+    case userConstants.LOGIN_SUCCESS:
+      return {
+        loggedIn: true,
+        user: action.user
+      };
+    case userConstants.LOGIN_FAILURE:
+      return {};
+    case userConstants.LOGOUT:
+      return {};
+    default:
+      return state
+  }
+}
+
+export const users = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.GETALL_REQUEST:
+      return {
+        loading: true
+      };
+    case userConstants.GETALL_SUCCESS:
+      return {
+        items: action.users
+      };
+    case userConstants.GETALL_FAILURE:
+      return { 
+        error: action.error
+      };
+    default:
+      return state
+  }
+}
+
+export const rootReducer = (state = { products: initialCartState.products, cart: initialCartState.cart, cartTotal: 0, authentication: {}, users: {}, alert: {} }, action) => {
   const cart = state.cart; // for cartTotalReducer access
   return {
     products: productsReducer(state.products, action),
     cart: cartReducer(state.cart, action),
-    cartTotal: cartTotalReducer(state.cartTotal, {...action, cart})
+    cartTotal: cartTotalReducer(state.cartTotal, {...action, cart}),
+    authentication: authentication(state.authentication, action),
+    users: users(state.users, action),
+    alert: alert(state.alert, action)
   };
 };
