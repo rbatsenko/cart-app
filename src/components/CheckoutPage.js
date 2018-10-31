@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import Cart from './Cart';
 
 class CheckoutPage extends Component {
+  state = {
+    cardIsEmpty: true
+  }
 
   handleKeyUp = (e) => {
     e.target.value ? e.target.classList.remove('is-invalid') : e.target.classList.add('is-invalid');
@@ -10,8 +13,8 @@ class CheckoutPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    this.props.history.push('/confirmation');
+    const { cart } = this.props;
+    cart.length === 0 ? alert('Your cart is empty! Please add some products.') : this.props.history.push('/confirmation');
   }
 
   render() {
@@ -26,7 +29,7 @@ class CheckoutPage extends Component {
 
           <div className="col-md-8 order-md-1">
             <h4 className="mb-3">Billing address</h4>
-            <form className="needs-validation" noValidate>
+            <form className="needs-validation" onSubmit={this.handleSubmit}>
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label htmlFor="firstName">First name</label>
@@ -134,7 +137,7 @@ class CheckoutPage extends Component {
                 </div>
               </div>
               <hr className="mb-4" />
-              <button className="btn btn-primary btn-lg btn-block" type="submit" onClick={this.handleSubmit}>Continue to checkout</button>
+              <button className="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
             </form>
           </div>
         </div>
@@ -144,9 +147,10 @@ class CheckoutPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { authentication } = state;
+  const { authentication, cart } = state;
   return ({
-    authentication
+    authentication,
+    cart
   });
 }
 
