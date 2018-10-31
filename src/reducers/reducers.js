@@ -11,24 +11,19 @@ const productsReducer = (state, action) => {
 const cartReducer = (state, action) => {
   switch(action.type) {
     case 'ADD_TO_CART':
-      if (Object.values(state.map(product => product.count)).reduce((a, b) => { return a + b; }, 0) < 3) {
-        const isInCart = state.find(({ id }) => id === action.product.id);
-        if (isInCart) {
-          return state.map(product => {
-              if (product.id === action.product.id) {
-                product = { ...product, count: product.count + 1 };
-              }
-              return product;
-            })
-        } else {
-          return [
-            ...state,
-            action.product
-          ]
-        }
+      const isInCart = state.find(({ id }) => id === action.product.id);
+      if (isInCart) {
+        return state.map(product => {
+            if (product.id === action.product.id) {
+              product = { ...product, count: product.count + 1 };
+            }
+            return product;
+          })
       } else {
-        alert('You can only add 3 or less items to cart!')
-        return state;
+        return [
+          ...state,
+          action.product
+        ]
       }
     case 'REMOVE_FROM_CART':
       return state.filter(({ id }) => id !== action.id);

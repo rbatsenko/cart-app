@@ -8,8 +8,12 @@ import Cart from './Cart';
 class ProductsPage extends Component {
 
   handleAdd = (id, name, price) => {
-    this.props.onAdd(id, name, price);
-    this.props.calcTotal();
+    if (Object.values(this.props.cart.map(product => product.count)).reduce((a, b) => { return a + b; }, 0) < 3) {
+      this.props.onAdd(id, name, price);
+      this.props.calcTotal();
+    } else {
+      alert('You can only add 3 or less items to cart!')
+    }
   }
 
   render() {
