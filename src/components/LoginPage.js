@@ -64,7 +64,7 @@ class LoginPage extends Component {
         }
         {authentication.loggedIn &&
           <div className="alert alert-success" role="alert">
-            <h4 className="alert-heading">Well done!</h4>
+            <h4 className="alert-heading mt-3">Well done!</h4>
             <p>Logged in as: <strong>{authentication.user.username}</strong></p>
           </div>
         }
