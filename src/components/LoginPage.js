@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../actions/actions';
 
@@ -62,12 +63,13 @@ class LoginPage extends Component {
         {alert.message && !authentication.loggedIn &&
           <div className="alert alert-danger">{alert.message}</div>
         }
-        {authentication.loggedIn &&
+        {/*authentication.loggedIn &&
           <div className="alert alert-success" role="alert">
             <h4 className="alert-heading mt-3">Well done!</h4>
             <p>Logged in as: <strong>{authentication.user.username}</strong></p>
           </div>
-        }
+        */}
+        {authentication.loggedIn && <Redirect push to="/products" />}
       </form>
     );
   }
