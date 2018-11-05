@@ -28,8 +28,8 @@ class ProductsPage extends Component {
           <div className="col-md-8">
             <div className="row products-container">
               {
-                this.props.products.map((product) => {
-                  return <ProductItem key={product.id} id={product.id} {...product} onClick={this.handleAdd} />;
+                this.props.products.map((product, key) => {
+                  return <ProductItem key={key} id={product.id} {...product} onClick={this.handleAdd} />;
                 })
               }
             </div>
@@ -40,7 +40,7 @@ class ProductsPage extends Component {
           </div>
 
         </div>
-    </div>
+      </div>
     );
   }
 }

@@ -2,10 +2,35 @@ import { alertConstants, userConstants } from '../constants/constants';
 import { userService } from '../services/services';
 import { createBrowserHistory } from 'history';
 
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
+
+// PRODUCTS ACTIONS
+// add Product
+export const addProduct = (
+  {
+    id,
+    name,
+    price
+  } = {}
+) => (
+  {
+    type: 'ADD_PRODUCT',
+    product: {
+      id,
+      name,
+      price
+    }
+  }
+);
+
+// remove Product
+export const removeProduct = ( { id } = {} ) => ({
+  type: 'REMOVE_PRODUCT',
+  id,
+});
 
 // CART ACTIONS
-// addToCart
+// add to Cart
 export const addToCart = (
   {
     id,
@@ -25,7 +50,7 @@ export const addToCart = (
   }
 );
 
-// removeFromCart
+// remove from Cart
 export const removeFromCart = ( { id } = {} ) => ({
   type: 'REMOVE_FROM_CART',
   id,
