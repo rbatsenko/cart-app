@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
+import { AdminRoute } from '../components/AdminRoute';
 import createHistory from 'history/createBrowserHistory';
 import Nav from '../components/Nav';
 import LoginPage from '../components/LoginPage';
@@ -23,8 +24,8 @@ const AppRouter = () => (
           <Route path="/products" component={ProductsPage} exact={true} />
           <Route path="/checkout" component={CheckoutPage} exact={true} />
           <Route path="/confirmation" component={ConfirmationPage} exact={true} />
-          <Route path="/manage-products" component={ManageProductsPage} exact={true} />
-          <Route path="/manage-users" component={ManageUsersPage} exact={true} />
+          <AdminRoute path="/manage-products" component={ManageProductsPage} exact={true} />
+          <AdminRoute path="/manage-users" component={ManageUsersPage} exact={true} />
           <Route component={NotFoundPage} />
         </Switch>
       </main>
