@@ -16,7 +16,6 @@ class ManageProductsPage extends Component {
     console.log(this.state);
 
     const { productName: name, productPrice: price } = this.state;
-
     const id = Math.max.apply(Math, this.props.products.map( product => product.id )) + 1;
 
     this.props.onAdd(id, name, price);
